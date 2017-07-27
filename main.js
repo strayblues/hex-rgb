@@ -13,7 +13,7 @@ function hexToRgb(){
 //    cutHash();
     hexToPairs();
     pairsToDec();
-//    DecToRGB();
+//    decToRGB();
     reassembleAndOutput();
   }
   else {
