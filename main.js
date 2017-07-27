@@ -36,14 +36,21 @@ function pairsToDec(){
   for(var i=0; i<rgbValues.length; i++){
     // If r, g or b contain a letter, convert that letter into a number
     // in the 10-base system
+
     isLetters(rgbValues[i]);
+    for(var i=0; i<rgbValues.length; i++){
+      // take left digit and multiply it by 16
+      rgbValues[i][0] = rgbValues[i][0]*16;
+    }
   }
 }
 
 function decToRGB(){
-  // Turn numerical representation into RGB representation
+  // Turn decimal representation into RGB representation
   for(var i=0; i<rgbValues.length; i++){
-    HowIsItDone(rgbValues[i]);
+    var num1 = rgbValues[i][0];
+    var num2 = rgbValues[i][1];
+    rgbValues[i] = num1 + num2;
   }
 }
 
