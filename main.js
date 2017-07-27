@@ -34,12 +34,11 @@ function hexToPairs(){
 function pairsToDec(){
   // Use isLetters over r, g and b
   for(var i=0; i<rgbValues.length; i++){
-    // If r, g or b contain a letter, convert that letter into a number
-    // in the 10-base system
-
+    // If r, g or b contain a letter...
     isLetters(rgbValues[i]);
+    // convert that letter into a number in the 10-base system by...
     for(var i=0; i<rgbValues.length; i++){
-      // take left digit and multiply it by 16
+      // multiplying the left digit by 16
       rgbValues[i][0] = rgbValues[i][0]*16;
     }
   }
@@ -52,11 +51,6 @@ function decToRGB(){
     var num2 = rgbValues[i][1];
     rgbValues[i] = num1 + num2;
   }
-}
-
-// THE HEART OF THE PROBLEM
-function HowIsItDone(){
-
 }
 
 // Helper function from Stack Overflow to check if a character is a letter
