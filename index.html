@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>RGB<Hex, Hex<RGB</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <label for="Hexadecimal value">Hexadecimal color code: </label>
+      <input id="hex-input" type="text">
+      <button type="button" value="Submit" onclick="hexToRgb()">Convert</button>
+      </input>
+      <div>
+        <label for="RGB value">Hex to pairs: </label>
+        <span id="hexToPairs-output"></span>
+      </div>
+      <div>
+        <label for="RGB value">Pairs to decimal values: </label>
+        <span id="pairsToDec-output"></span>
+      </div>
+      <div>
+        <label for="RGB value">RGB color code: </label>
+        <span id="rgb-output"></span>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
