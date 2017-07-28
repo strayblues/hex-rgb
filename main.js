@@ -2,7 +2,6 @@
 
 const REGEX = /^[a-z]+$/i;
 var characterArray;
-var digitArray;
 
 function hexToRgb() {
   var hex = document.getElementById('hex-input').value;
@@ -55,7 +54,8 @@ function letterToNumber(l){
 
 function toRGB(){
   var rgbArray = [];
-  var digitArray = characterArray;
+  var digitArray = [];
+  digitArray = characterArray;
   for(var i=0; i<digitArray.length; i++){
     if (i % 2 === 0) {
       var leftDig = digitArray[i];
