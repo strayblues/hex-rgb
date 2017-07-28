@@ -7,9 +7,9 @@
 body {
   background-color: #eee;
   font-family: Arial;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 180%;
-  width: 260px;
+  width: 280px;
   margin: 0 auto;
 }
 
@@ -26,6 +26,12 @@ body {
 }
 
 input[type="text"] {
-  width: 60px;
+  width: 85px;
   margin: 0 10px;
+  border: none;
+  border-bottom: 2px solid steelblue;
+  outline: none;
+  height: 25px;
+  font-size: 18px;
+  color: inherit;
 }

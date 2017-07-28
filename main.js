@@ -12,7 +12,7 @@ function hexToRgb() {
     }
     toInt(characterArray);
     // Output the result when input is 6 characters long
-    if (hex.length > 5){
+    if (characterArray.length > 5){
       var color = toRGB(characterArray);
       document.getElementById('rgb-output').innerHTML = color;
       // Change body color
