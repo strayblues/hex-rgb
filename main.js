@@ -56,9 +56,9 @@ function decToRGB(){
 
 function handleLetters(array){
   for (var i=0; i<array.length; i++) {
-    for (var j=0; j<array[i].length; j++) {
+    for (var j=0; j<2; j++) {
       // If the array contains a letter
-      if( (array[i][0].match(regex)) || (array[i][1].match(regex)) ) {
+      if(array[i][j].match(regex)) {
         // Store that letter in a variable
         var letter = array[i][j];
         // Convert letter into number
