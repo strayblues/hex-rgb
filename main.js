@@ -4,9 +4,12 @@ const REGEX = /^[a-z]+$/i;
 
 function hexToRgb() {
   var hex = document.getElementById('hex-input').value;
-  if (hex != null) { // TODO Other input validation conditions may be wanted
+  if (hex.length > 0) { // TODO Other input validation conditions may be wanted
     // Array contains 6 single character strings of digits and letters
     var characterArray = hex.split('');
+    if (characterArray[0] == '#'){
+      characterArray.shift();
+    }
     toInt(characterArray);
     // Output the result
     var color = toRGB(characterArray);
@@ -34,22 +37,22 @@ function toInt(characterArray){
 }
 
 function letterToNumber(l){
-  if (l === 'A'){ // TODO Handle lowercase as well
+  if ((l === 'A') || (l === 'a')) { // TODO Handle lowercase as well
     l = 10;
   }
-  else if (l === 'B'){
+  else if ((l === 'B') || (l === 'b')){
     l = 11;
   }
-  else if (l === 'C'){
+  else if ((l === 'C') || (l === 'c')){
     l = 12
   }
-  else if (l === 'D'){
+  else if ((l === 'D') || (l === 'd')){
     l = 13
   }
-  else if (l === 'E'){
+  else if ((l === 'E') || (l === 'e')){
     l = 14
   }
-  else if (l === 'F'){
+  else if ((l === 'F') || (l === 'f')){
     l = 15
   }
   return l;
@@ -64,11 +67,3 @@ function toRGB(digitArray){
   }
   return 'rgb(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
 }
-
-/*
-function handleHash(){
-  if (hex[0] == '#'){
-    hex.shift();
-  }
-}
-*/
