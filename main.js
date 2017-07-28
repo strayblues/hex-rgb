@@ -11,12 +11,13 @@ function hexToRgb() {
       characterArray.shift();
     }
     toInt(characterArray);
-    // Output the result
-    var color = toRGB(characterArray);
-    document.getElementById('rgb-output').innerHTML = color;
-    // Change body color
-    document.body.style.background = color;
-
+    // Output the result when input is 6 characters long
+    if (hex.length > 5){
+      var color = toRGB(characterArray);
+      document.getElementById('rgb-output').innerHTML = color;
+      // Change body color
+      document.body.style.background = color;
+    }
   }
   else {
     alert('Please enter something.');
