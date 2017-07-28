@@ -2,19 +2,23 @@
 
 const LETTER = /^[a-z]+$/i;
 
-function hexToRgb() {
+function init(){
   // Prevent user from typing non-hexadecimal values
   document.querySelector("#hex-input").onkeypress = function(e) {
     return "0123456789ABCDEFabcdef#".indexOf(String.fromCharCode(e.which)) >= 0;
   };
+}
 
+function hexToRgb() {
   var hex = document.getElementById('hex-input').value;
 
   // Array contains 6 single character strings of digits and letters
   var characterArray = hex.split('');
   if (characterArray[0] == '#'){
     document.querySelector("#hex-input").maxLength = '7';
-    characterArray.shift();  
+    characterArray.shift();
+  } else {
+    document.querySelector("#hex-input").maxLength = '6';
   }
   toInt(characterArray);
   // Output the result when input is 6 characters long

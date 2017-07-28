@@ -9,7 +9,7 @@ body {
   font-family: Arial;
   font-size: 18px;
   line-height: 180%;
-  width: 280px;
+  width: 300px;
   margin: 0 auto;
 }
 
@@ -21,8 +21,15 @@ body {
   color: steelblue;
 }
 
+.input {
+  margin-left: 10px;  
+}
+
 .output {
-  margin-top: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #eeffbb;
+  padding: 10px;
 }
 
 input[type="text"] {
