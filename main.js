@@ -1,23 +1,26 @@
 "use strict";
 
 const REGEX = /^[a-z]+$/i;
-var characterArray;
 
 function hexToRgb() {
   var hex = document.getElementById('hex-input').value;
   if (hex != null) { // TODO Other input validation conditions may be wanted
     // Array contains 6 single character strings of digits and letters
-    characterArray = hex.split('');
-    toInt();
+    var characterArray = hex.split('');
+    toInt(characterArray);
     // Output the result
-    document.getElementById('rgb-output').innerHTML = toRGB();
+    var color = toRGB(characterArray);
+    document.getElementById('rgb-output').innerHTML = color;
+    // Change body color
+    document.body.style.background = color;
+
   }
   else {
     alert('Please enter something.');
   }
 }
 
-function toInt(){
+function toInt(characterArray){
   for (var i=0; i<characterArray.length; i++) {
     // If the array contains a letter
     if(characterArray[i].match(REGEX)) {
@@ -52,7 +55,7 @@ function letterToNumber(l){
   return l;
 }
 
-function toRGB(){
+function toRGB(characterArray){
   var rgbArray = [];
   var digitArray = [];
   digitArray = characterArray;
