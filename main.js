@@ -57,12 +57,10 @@ function letterToNumber(l){
 
 function toRGB(digitArray){
   var rgbArray = [];
-  for(var i=0; i<digitArray.length; i++){
-    if (i % 2 === 0) {
+  for(var i=0; i<digitArray.length; i = i+2){
       var leftDig = digitArray[i];
       var rightDig = digitArray[i+1];
       rgbArray.push(leftDig*16 + rightDig);
-    }
   }
   return 'rgb(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
 }
