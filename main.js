@@ -9,7 +9,7 @@ function hexToRgb() {
   if (hex != null) { // TODO Other input validation conditions may be wanted
     // Array contains 6 single character strings of digits and letters
     characterArray = hex.split('');
-    handleLetters();
+    toInt();
     // Output the result
     document.getElementById('rgb-output').innerHTML = toRGB();
   }
@@ -18,12 +18,15 @@ function hexToRgb() {
   }
 }
 
-function handleLetters(){
+function toInt(){
   for (var i=0; i<characterArray.length; i++) {
     // If the array contains a letter
     if(characterArray[i].match(REGEX)) {
       // Convert letter to number
       characterArray[i] = letterToNumber(characterArray[i]);
+    }
+    else {
+      characterArray[i] = parseInt(characterArray[i]);
     }
   }
 }
@@ -55,9 +58,9 @@ function toRGB(){
   var digitArray = characterArray;
   for(var i=0; i<digitArray.length; i++){
     if (i % 2 === 0) {
-      var leftDig = parseInt(digitArray[i]);
+      var leftDig = digitArray[i];
       leftDig = leftDig*16;
-      var rightDig = parseInt(digitArray[i+1]);
+      var rightDig = digitArray[i+1];
       leftDig = leftDig + rightDig;
       rgbArray.push(leftDig);
     }
