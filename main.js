@@ -5,28 +5,24 @@ const LETTER = /^[a-z]+$/i;
 function hexToRgb() {
   // Prevent user from typing non-hexadecimal values
   document.querySelector("#hex-input").onkeypress = function(e) {
-    return "0123456789ABCDEFabcdef".indexOf(String.fromCharCode(e.which)) >= 0;
+    return "0123456789ABCDEFabcdef#".indexOf(String.fromCharCode(e.which)) >= 0;
   };
 
   var hex = document.getElementById('hex-input').value;
 
-  if (hex.length > 0) { // TODO Other input validation conditions may be wanted
-    // Array contains 6 single character strings of digits and letters
-    var characterArray = hex.split('');
-    if (characterArray[0] == '#'){
-      characterArray.shift();
-    }
-    toInt(characterArray);
-    // Output the result when input is 6 characters long
-    if (characterArray.length > 5){
-      var color = toRGB(characterArray);
-      document.getElementById('rgb-output').innerHTML = color;
-      // Change body color
-      document.body.style.background = color;
-    }
+  // Array contains 6 single character strings of digits and letters
+  var characterArray = hex.split('');
+  if (characterArray[0] == '#'){
+    document.querySelector("#hex-input").maxLength = '7';
+    characterArray.shift();  
   }
-  else {
-    alert('Please enter something.');
+  toInt(characterArray);
+  // Output the result when input is 6 characters long
+  if (characterArray.length > 5){
+    var color = toRGB(characterArray);
+    document.getElementById('rgb-output').innerHTML = color;
+    // Change body color
+    document.body.style.background = color;
   }
 }
 
