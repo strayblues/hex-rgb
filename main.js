@@ -1,10 +1,15 @@
 "use strict";
 
 const LETTER = /^[a-z]+$/i;
-//const VALID_INPUT = /^[0-9A-Fa-f]{0,6}$/;
 
 function hexToRgb() {
+  // Prevent user from typing non-hexadecimal values
+  document.querySelector("#hex-input").onkeypress = function(e) {
+    return "0123456789ABCDEFabcdef".indexOf(String.fromCharCode(e.which)) >= 0;
+  };
+
   var hex = document.getElementById('hex-input').value;
+
   if (hex.length > 0) { // TODO Other input validation conditions may be wanted
     // Array contains 6 single character strings of digits and letters
     var characterArray = hex.split('');
