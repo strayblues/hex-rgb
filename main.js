@@ -37,22 +37,23 @@ function toInt(characterArray){
 }
 
 function letterToNumber(l){
-  if ((l === 'A') || (l === 'a')) { // TODO Handle lowercase as well
+  l = l.toUpperCase();
+  if (l === 'A') {
     l = 10;
   }
-  else if ((l === 'B') || (l === 'b')){
+  else if (l === 'B'){
     l = 11;
   }
-  else if ((l === 'C') || (l === 'c')){
+  else if (l === 'C'){
     l = 12
   }
-  else if ((l === 'D') || (l === 'd')){
+  else if (l === 'D'){
     l = 13
   }
-  else if ((l === 'E') || (l === 'e')){
+  else if (l === 'E'){
     l = 14
   }
-  else if ((l === 'F') || (l === 'f')){
+  else if (l === 'F'){
     l = 15
   }
   return l;
