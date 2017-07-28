@@ -3,9 +3,7 @@
 var hex;
 var rgb;
 var hexArray;
-var valuesArray = [];
-var decArray = [];
-var rgbArray;
+var rgbArray = [];
 var r;
 var g;
 var b;
@@ -16,7 +14,6 @@ function hexToRgb() {
   if (hex != null) { // TODO Other input validation conditions may be wanted
     toArray();
     handleLetters();
-    toDec();
     toRGB();
     // Output the result
     document.getElementById('rgb-output').innerHTML = rgb;
@@ -28,7 +25,6 @@ function hexToRgb() {
 
 function toArray(){
   hexArray = hex.split('');
-  alert('hex array: ' + hexArray);
   return hexArray;
 }
 
@@ -38,10 +34,8 @@ function handleLetters(){
     if(hexArray[i].match(regex)) {
       // Convert letter into number
       hexArray[i] = letterToNumber(hexArray[i]);
-//      alert('Letter found!!!');
     }
   }
-  alert('No letters: ' + hexArray);
   return hexArray;
 }
 
@@ -67,30 +61,17 @@ function letterToNumber(l){
   return l;
 }
 
-function toDec(){
+function toRGB(){
   for(var i=0; i<hexArray.length; i++){
     if (i % 2 === 0) {
       var leftNum = parseInt(hexArray[i]);
       leftNum = leftNum*16;
       var rightNum = parseInt(hexArray[i+1]);
       leftNum = leftNum + rightNum;
-      decArray.push(leftNum);
+      rgbArray.push(leftNum);
     }
   }
-  alert('toDec output: ' + decArray);
-  return decArray;
-}
-
-function toRGB(){
-  for(var i=0; i<decArray.length; i++){
-    if (i % 2 === 0) {
-      decArray[i] = decArray[i]+hexArray[i+1];
-      rgbArray = decArray.push(decArray[i]);
-    }
-  }
-
-  rgb = '(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
-  alert('toRGB output: ' + rgb);
+  rgb = 'rgb(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
   return rgb;
 }
 
