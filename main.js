@@ -28,7 +28,7 @@ function hexToRgb() {
 
 function toArray(){
   hexArray = hex.split('');
-//  alert('hex array: ' + hexArray);
+  alert('hex array: ' + hexArray);
   return hexArray;
 }
 
@@ -41,7 +41,7 @@ function handleLetters(){
 //      alert('Letter found!!!');
     }
   }
-//  alert('handleLetters outout (supposed to contain no letters): ' + hexArray);
+  alert('No letters: ' + hexArray);
   return hexArray;
 }
 
@@ -70,11 +70,12 @@ function letterToNumber(l){
 function toDec(){
   for(var i=0; i<hexArray.length; i++){
     if (i % 2 === 0) {
-      decArray.push(hexArray[i]);
+      var leftNum = parseInt(hexArray[i]);
+      leftNum = leftNum*16;
+      var rightNum = parseInt(hexArray[i+1]);
+      leftNum = leftNum + rightNum;
+      decArray.push(leftNum);
     }
-  }
-  for(var i=0; i<decArray.length; i++){
-    decArray[i] = decArray[i] * 16;
   }
   alert('toDec output: ' + decArray);
   return decArray;
