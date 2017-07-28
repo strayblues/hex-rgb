@@ -1,11 +1,12 @@
 "use strict";
 
-var hex,
-    rgb,
-    r,
-    g,
-    b,
-    rgbValues = [];
+var hex;
+var rgb;
+var rgbValues;
+var r;
+var g;
+var b;
+var regex = /^[a-z]+$/i;
 
 function hexToRgb(){
   hex = document.getElementById('hex-input').value;
@@ -25,21 +26,21 @@ function hexToPairs(){
   // Separate original input value into 3 pairs
   r = hex.slice(1,3);
   g = hex.slice(3,5);
-  b = hex.slice(5,);
+  b = hex.slice(5);
   // And store those pairs in an array so we can later loop over them
   rgbValues = [r, g, b];
 }
 
 // Convert each hexadecimal value to decimal
 function pairsToDec(){
-  // Use isLetters over r, g and b
+  // Use handleLetters over r, g and b
   for(var i=0; i<rgbValues.length; i++){
     // If r, g or b contain a letter...
-    isLetters(rgbValues[i]);
+    handleLetters(rgbValues[i]);
     // convert that letter into a number in the 10-base system by...
-    for(var i=0; i<rgbValues.length; i++){
+    for(var j=0; j<rgbValues.length; j++){
       // multiplying the left digit by 16
-      rgbValues[i][0] = rgbValues[i][0]*16;
+      rgbValues[j][0] = parseInt(rgbValues[j][0]) * 16;
     }
   }
 }
@@ -47,27 +48,27 @@ function pairsToDec(){
 function decToRGB(){
   // Turn decimal representation into RGB representation
   for(var i=0; i<rgbValues.length; i++){
-    var num1 = rgbValues[i][0];
-    var num2 = rgbValues[i][1];
-    rgbValues[i] = num1 + num2;
+    var num1 = parseInt(rgbValues[i][0]);
+    var num2 = parseInt(rgbValues[i][1]);
+    rgbValues[i] = (num1 + num2).toString();
   }
 }
 
-// Helper function from Stack Overflow to check if a character is a letter
-// This leverages ECMAScript case transformation to find letters
-//(instead of using a regex).
-function isLetters(array){
+function handleLetters(array){
   for (var i=0; i<array.length; i++) {
-    // If the array contains a letter
-    if(array[i].toLowerCase() != array[i].toUpperCase()){
-      // Store that letter in a variable
-      var letter = array[i];
-      // Convert letter into number
-      letterToNumber(letter); // This function is mine
-    } else {
-      return false;
+    for (var j=0; j<array[i].length; j++) {
+      // If the array contains a letter
+      if( (array[i][0].match(regex)) || (array[i][1].match(regex)) ) {
+        // Store that letter in a variable
+        var letter = array[i][j];
+        // Convert letter into number
+        letterToNumber(letter); // This function is mine
+        return true;
+      } else {
+        return false;
+      }
     }
-  } return true;
+  }
 }
 
 function letterToNumber(l){
@@ -89,11 +90,12 @@ function letterToNumber(l){
   else if (l === 'F'){
     l = 15
   }
+  return l;
 }
 
 function reassembleAndOutput(){
 // Compose the RGB representation
-rgb = r + ', ' + g + ', ' + b;
+rgb = '(' + r + ', ' + g + ', ' + b + ')';
 // Output the result
 document.getElementById('rgb-output').innerHTML = rgb;
 }
