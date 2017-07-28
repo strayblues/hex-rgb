@@ -2,7 +2,10 @@
 
 var hex;
 var rgb;
-var rgbValues;
+var pairs;
+var valuesArray = [];
+var newArray = [];
+var rgbArray;
 var r;
 var g;
 var b;
@@ -11,12 +14,11 @@ var regex = /^[a-z]+$/i;
 function hexToRgb() {
   hex = document.getElementById('hex-input').value;
   if (hex != null) { // TODO Other input validation conditions may be wanted
-//    cutHash();
-    hexToPairs();
+    toPairs();
     handleLetters();
-    pairsToDec();
-    decToRGB();
-    reassemble();
+    toArray();
+    toDec();
+    toRGB();
     // Output the result
     document.getElementById('rgb-output').innerHTML = rgb;
   }
@@ -25,32 +27,31 @@ function hexToRgb() {
   }
 }
 
-function hexToPairs(){
+function toPairs(){
   // Separate original input value into 3 pairs
-  r = hex.slice(1,3); // (Assuming Hash is used)
-  g = hex.slice(3,5);
-  b = hex.slice(5);
+  r = hex.slice(0,2); // (Assuming Hash is used)
+  g = hex.slice(2,4);
+  b = hex.slice(4);
   // And store those pairs in an array so we can later loop over them
-  rgbValues = [r, g, b];
-  return rgbValues;
+  pairs = [r, g, b];
+  alert('toPairs outout: ' + pairs);
+  return pairs;
 }
 
 function handleLetters(){
-  for (var i=0; i<rgbValues.length; i++) {
+  for (var i=0; i<pairs.length; i++) {
     for (var j=0; j<2; j++) {
       // If the array contains a letter
-      if(rgbValues[i][j].match(regex)) {
+      if(pairs[i][j].match(regex)) {
         // Store that letter in a variable
-        var letter = rgbValues[i][j];
+        var letter = pairs[i][j];
         // Convert letter into number
         letterToNumber(); // This function is mine
-        return true;
-      } else {
-        return false;
       }
     }
   }
-  return rgbValues;
+  alert('handleLetters outout: ' + pairs);
+  return pairs;
 }
 
 function letterToNumber(l){
@@ -75,32 +76,42 @@ function letterToNumber(l){
   return l;
 }
 
-function pairsToDec(){
-  // convert left side number to decimal by...
-  for(var j=0; j<rgbValues.length; j++){
-    // multiplying the left digit by 16
-    rgbValues[j][0] = parseInt(rgbValues[j][0]) * 16;
+function toArray(){
+  for(var i=0; i<pairs.length; i++){
+    valuesArray.push(parseInt(pairs[i]));
   }
-  return rgbValues; // WHY Illegal?
+  alert('pairs array: ' + pairs);
+  return pairs;
 }
 
-function decToRGB(rgbValues){
-  // Turn decimal representation into RGB representation
-  for(var i=0; i<rgbValues.length; i++){
-    var num1 = parseInt(rgbValues[i][0]);
-    var num2 = parseInt(rgbValues[i][1]);
-    rgbValues[i] = (num1 + num2).toString();
+function toDec(){
+  for(var i=0; i<valuesArray.length; i++){
+    if (i % 2 === 0) {
+      newArray.push(valuesArray[i]);
+    }
   }
-  return rgbValues;
+  for(var i=0; i<newArray.length; i++){
+    newArray[i] = newArray[i] * 16;
+  }
+  alert('toDec output: ' + newArray);
+  return newArray;
 }
 
-function reassemble(rgbValues){
-// Compose the RGB representation
-rgb = '(' + rgbValues[0] + ', ' + rgbValues[1] + ', ' + rgbValues[2] + ')';
+function toRGB(){
+  for(var i=0; i<valuesArray.length; i++){
+    if (i % 2 === 0) {
+      newArray[i] = newArray[i]+valuesArray[i+1];
+      rgbArray = newArray.push(parseInt(newArray[i]));
+    }
+  }
+  // Compose the RGB representation
+  rgb = '(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
+  alert('toRGB output: ' + rgb);
+  return rgb;
 }
 
-function cutHash(hex){
+function handleHash(){
   if (hex[0] == '#'){
-    hex.split('').shift(); // TODO Make it work.
+    hex.shift();
   }
 }
