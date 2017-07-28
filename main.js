@@ -12,31 +12,24 @@ var regex = /^[a-z]+$/i;
 function hexToRgb() {
   hex = document.getElementById('hex-input').value;
   if (hex != null) { // TODO Other input validation conditions may be wanted
-    toArray();
+    hexArray = hex.split('');
     handleLetters();
-    toRGB();
     // Output the result
-    document.getElementById('rgb-output').innerHTML = rgb;
+    document.getElementById('rgb-output').innerHTML = toRGB();
   }
   else {
     alert('Please enter something.');
   }
 }
 
-function toArray(){
-  hexArray = hex.split('');
-  return hexArray;
-}
-
 function handleLetters(){
   for (var i=0; i<hexArray.length; i++) {
     // If the array contains a letter
     if(hexArray[i].match(regex)) {
-      // Convert letter into number
+      // Convert letter to number
       hexArray[i] = letterToNumber(hexArray[i]);
     }
   }
-  return hexArray;
 }
 
 function letterToNumber(l){
@@ -71,12 +64,13 @@ function toRGB(){
       rgbArray.push(leftNum);
     }
   }
-  rgb = 'rgb(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
-  return rgb;
+  return 'rgb(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
 }
 
+/*
 function handleHash(){
   if (hex[0] == '#'){
     hex.shift();
   }
 }
+*/
