@@ -1,6 +1,7 @@
 "use strict";
 
-const REGEX = /^[a-z]+$/i;
+const LETTER = /^[a-z]+$/i;
+//const VALID_INPUT = /^[0-9A-Fa-f]{0,6}$/;
 
 function hexToRgb() {
   var hex = document.getElementById('hex-input').value;
@@ -27,7 +28,7 @@ function hexToRgb() {
 function toInt(characterArray){
   for (var i=0; i<characterArray.length; i++) {
     // If the array contains a letter
-    if(characterArray[i].match(REGEX)) {
+    if(characterArray[i].match(LETTER)) {
       // Convert letter to number
       characterArray[i] = letterToNumber(characterArray[i]);
     }
