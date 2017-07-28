@@ -29,38 +29,41 @@ function hexToPairs(){
   b = hex.slice(5);
   // And store those pairs in an array so we can later loop over them
   rgbValues = [r, g, b];
+  return rgbValues;
 }
 
 // Convert each hexadecimal value to decimal
-function pairsToDec(){
+function pairsToDec(rgbValues){
   // Use handleLetters over r, g and b
   for(var i=0; i<rgbValues.length; i++){
     // If r, g or b contain a letter...
-    handleLetters(rgbValues[i]);
+    handleLetters(rgbValues);
     // convert that letter into a number in the 10-base system by...
     for(var j=0; j<rgbValues.length; j++){
       // multiplying the left digit by 16
       rgbValues[j][0] = parseInt(rgbValues[j][0]) * 16;
     }
   }
+  return rgbValues;
 }
 
-function decToRGB(){
+function decToRGB(rgbValues){
   // Turn decimal representation into RGB representation
   for(var i=0; i<rgbValues.length; i++){
     var num1 = parseInt(rgbValues[i][0]);
     var num2 = parseInt(rgbValues[i][1]);
     rgbValues[i] = (num1 + num2).toString();
   }
+  return rgbValues;
 }
 
-function handleLetters(array){
-  for (var i=0; i<array.length; i++) {
+function handleLetters(rgbValues){
+  for (var i=0; i<rgbValues.length; i++) {
     for (var j=0; j<2; j++) {
       // If the array contains a letter
-      if(array[i][j].match(regex)) {
+      if(rgbValues[i][j].match(regex)) {
         // Store that letter in a variable
-        var letter = array[i][j];
+        var letter = rgbValues[i][j];
         // Convert letter into number
         letterToNumber(letter); // This function is mine
         return true;
@@ -69,6 +72,7 @@ function handleLetters(array){
       }
     }
   }
+  return rgbValues;
 }
 
 function letterToNumber(l){
